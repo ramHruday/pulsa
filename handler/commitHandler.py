@@ -63,7 +63,7 @@ class CommitHandler(object):
             pass
 
         request_status_template = {"startDate": current_date.strftime('%m/%d/%Y'), "name": kl_name, "email": kl_mail,
-                                   "taskToday": "commits_for_today"}
+                                   "taskToday": commits_for_today}
 
         # res_status = fill_status(request_status_template)
         return request_status_template
