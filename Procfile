@@ -1,1 +1,1 @@
-"gunicorn pulsa:'create_app()'" 
+gunicorn pulsa:'create_app()'
