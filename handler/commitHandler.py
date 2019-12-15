@@ -82,7 +82,7 @@ class CommitHandler(object):
             "displayText": speech, }
 
     def process_request(self, req):
-        action = req.get("result").get("action")
+        action = req.get("queryResult").get("action")
         print("starting processRequest...", action)
         if action != "klpulse":
             return {}
