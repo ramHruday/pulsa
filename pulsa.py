@@ -2,7 +2,6 @@ from __future__ import print_function
 
 from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen, Request
-from urllib.error import HTTPError
 
 import json
 from flask import (
