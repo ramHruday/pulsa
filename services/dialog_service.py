@@ -1,50 +1,30 @@
 from __future__ import print_function
 
 import json
-from urllib.parse import urlencode
-from urllib.request import urlopen
 
 from flask import (
     Blueprint, request, make_response)
 
+# from pulsa.han
+#
+# commitHandle = CommitHandler()
+from handler.commitHandler import CommitHandler
+
+commitHandle = CommitHandler()
 dialog = Blueprint('dialog', __name__)
 
 
 @dialog.route('/pulseHook', methods=['POST'])
 def webhook():
-    req = request.get_json(silent=True, force=True)
+    req = json.loads(request.get_data())
 
-    print(json.dumps(req, indent=4))
+    print(req)
 
-    res = processRequest(req)
-
+    res = commitHandle.process_request(req)
     res = json.dumps(res, indent=4)
-    print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
-
-
-def processRequest(req):
-    action = req.get("result").get("action")
-    print("starting processRequest...", action)
-    if action != "yahooWeatherForecast":
-        return {"action": str(req)}
-    result = {}
-    data = json.loads(result)
-    res = convert_web_hook(data)
-    return res
-
-
-def convert_web_hook(data):
-
-    speech = "data fetched from your git"
-    print(speech)
-
-    return {
-        "speech": speech,
-        "displayText": speech,
-    }
 
 
 @dialog.route('/test', methods=['GET'])

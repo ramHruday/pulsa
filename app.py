@@ -9,7 +9,6 @@ app.register_blueprint(dialog_service.dialog)
 
 if __name__ == '__main__':
     try:
-        print('u')
         app.run()
     except:
         traceback.print_exc()
